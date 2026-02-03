@@ -27,9 +27,9 @@ export default function InfoBanner() {
             </div>
             
             <p className="text-white/90 text-sm leading-relaxed mb-3">
-              แพลตฟอร์มประชาชนสำหรับ <strong className="text-yellow-300">รายงานความผิดพลาด</strong> และ 
-              <strong className="text-yellow-300"> ติดตามการทำงานของ กกต.</strong> ในวันที่{' '}
-              <strong>8 กุมภาพันธ์ 2569</strong> วันประชามติรัฐธรรมนูญใหม่ฉบับประชาชน
+              แพลตฟอร์มประชาชนสำหรับ <strong className="text-yellow-300">รายงานความผิดพลาด บกพร่อง ไม่สะดวก</strong> และ 
+              <strong className="text-yellow-300"> ติดตามการทำงานของ กกต.</strong> ในการเลือกตั้งวันที่{' '}
+              <strong>8 กุมภาพันธ์ 2569</strong>
             </p>
 
             {/* Features */}
