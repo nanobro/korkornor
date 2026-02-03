@@ -1,25 +1,9 @@
 {
   "version": 2,
-  "name": "korkornor",
   "builds": [
     {
       "src": "package.json",
       "use": "@vercel/next"
     }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
-  ],
-  "env": {
-    "NEXT_PUBLIC_SUPABASE_URL": "@supabase_url",
-    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@supabase_anon_key",
-    "GEMINI_API_KEY": "@gemini_api_key",
-    "BLOB_READ_WRITE_TOKEN": "@blob_token"
-  },
-  "github": {
-    "silent": true
-  }
+  ]
 }
