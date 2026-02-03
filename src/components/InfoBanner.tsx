@@ -48,11 +48,19 @@ export default function InfoBanner() {
               </div>
             </div>
 
-            {/* Call to action */}
-            <div className="mt-4 flex items-center gap-3">
+            {/* Links */}
+            <div className="mt-4 flex flex-wrap items-center gap-3">
               <div className="bg-white/20 px-3 py-1.5 rounded-lg text-xs">
                 <span className="text-yellow-300 font-bold">เป้าหมาย:</span> รวบรวมหลักฐานความผิดพลาดของ กกต. ให้ประชาชนตรวจสอบได้
               </div>
+              <a
+                href="https://www.ect.go.th/ect_th/th/board-of-director/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white text-red-700 px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-yellow-100 transition-colors flex items-center gap-1"
+              >
+                อยากรู้จัก กกต? →
+              </a>
             </div>
           </div>
 
