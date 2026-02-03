@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Countdown from '@/components/Countdown';
-import CampaignBanner from '@/components/CampaignBanner';
+// import CampaignBanner from '@/components/CampaignBanner';
 import QuickReportForm from '@/components/QuickReportForm';
 import ReportsFeed from '@/components/ReportsFeed';
 import { DashboardStats, ElectionUnit, Report } from '@/types';
@@ -157,9 +157,9 @@ export default function Home() {
             href="https://twitter.com/hashtag/8กุมภาเห็นชอบ"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-blue-600 hover:text-blue-800 font-medium"
+            className="bg-green-500 hover:bg-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-full transition-colors"
           >
-            #8กุมภาเห็นชอบ
+            #8กุมภากาเห็นชอบ
           </a>
         </div>
       </header>
@@ -168,8 +168,8 @@ export default function Home() {
         {/* Countdown */}
         <Countdown />
 
-        {/* Campaign Banner */}
-        <CampaignBanner />
+        {/* Campaign Banner - Hidden for now to save space */}
+        {/* <CampaignBanner /> */}
 
         {/* Stats Overview */}
         <div className="grid grid-cols-4 gap-2">
