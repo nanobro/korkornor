@@ -6,6 +6,7 @@ import Countdown from '@/components/Countdown';
 // import CampaignBanner from '@/components/CampaignBanner';
 import QuickReportForm from '@/components/QuickReportForm';
 import ReportsFeed from '@/components/ReportsFeed';
+import InfoBanner from '@/components/InfoBanner';
 import { DashboardStats, ElectionUnit, Report } from '@/types';
 import { getDashboardStats, getElectionUnits, getAllReports } from '@/lib/supabase';
 import { AlertTriangle, TrendingUp, MapPin, Users, Bomb } from 'lucide-react';
@@ -168,8 +169,8 @@ export default function Home() {
         {/* Countdown */}
         <Countdown />
 
-        {/* Campaign Banner - Hidden for now to save space */}
-        {/* <CampaignBanner /> */}
+        {/* Info Banner - อธิบายว่าเว็บนี้คืออะไร */}
+        <InfoBanner />
 
         {/* Stats Overview */}
         <div className="grid grid-cols-4 gap-2">
