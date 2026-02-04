@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { classifyReportWithOpenRouter, isOpenRouterConfigured } from '@/lib/openrouter';
 
 export async function POST(request: NextRequest) {
   try {
-    const { description } = await request.json();
+    const { description, imageUrls, existingReports } = await request.json();
 
     if (!description) {
       return NextResponse.json(
@@ -11,42 +12,52 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Mock AI Classification
-    const categories = [
-      'เครื่องลงคะแนนเสีย',
-      'บัตรไม่เพียงพอ',
-      'การขัดขวางผู้มีสิทธิ',
-      'เปิดหน่วยล่าช้า',
-      'ภัยธรรมชาติ',
-      'อื่นๆ'
-    ];
-    
-    const severities = ['low', 'medium', 'high', 'critical'] as const;
-    
-    // Simple keyword matching for demo
-    let severity: typeof severities[number] = 'medium';
-    if (description.includes('ขัดขวาง') || description.includes('คุกคาม')) {
-      severity = 'critical';
-    } else if (description.includes('เครื่องเสีย') || description.includes('ไม่ทำงาน')) {
-      severity = 'high';
-    } else if (description.includes('ล่าช้า') || description.includes('รอนาน')) {
-      severity = 'medium';
-    } else if (description.includes('เล็กน้อย') || description.includes('น้อย')) {
-      severity = 'low';
+    // Check if OpenRouter is configured
+    if (!isOpenRouterConfigured()) {
+      // Mock response for demo
+      const severities = ['low', 'medium', 'high', 'critical'] as const;
+      const categories = [
+        'เครื่องลงคะแนนเสีย',
+        'บัตรไม่เพียงพอ',
+        'การขัดขวางผู้มีสิทธิ',
+        'เปิดหน่วยล่าช้า',
+        'ภัยธรรมชาติ',
+        'อื่นๆ'
+      ];
+
+      // Simple keyword matching
+      let severity: typeof severities[number] = 'medium';
+      if (description.includes('ขัดขวาง') || description.includes('คุกคาม')) {
+        severity = 'critical';
+      } else if (description.includes('เครื่องเสีย') || description.includes('ไม่ทำงาน')) {
+        severity = 'high';
+      } else if (description.includes('ล่าช้า') || description.includes('รอนาน')) {
+        severity = 'medium';
+      }
+
+      return NextResponse.json({
+        classification: {
+          category: categories[Math.floor(Math.random() * categories.length)],
+          severity,
+          summary: description.slice(0, 100),
+          confidence: 0.75,
+          possibleDuplicate: false,
+        },
+        mockMode: true,
+        message: 'AI จำลอง (Mock) - ไม่ได้เชื่อมต่อ OpenRouter'
+      });
     }
 
-    const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+    // Use OpenRouter for classification
+    const result = await classifyReportWithOpenRouter(
+      description,
+      imageUrls || [],
+      existingReports || []
+    );
 
-    return NextResponse.json({ 
-      classification: {
-        category: randomCategory,
-        severity,
-        summary: description.slice(0, 100),
-        confidence: 0.75 + Math.random() * 0.2,
-        possibleDuplicate: false,
-      },
-      mockMode: true,
-      message: 'AI จำลอง (Mock) - ไม่ได้เชื่อมต่อ Gemini จริง'
+    return NextResponse.json({
+      classification: result,
+      model: 'arcee-ai/trinity-large-preview (OpenRouter)',
     });
   } catch (error) {
     console.error('Error classifying report:', error);
