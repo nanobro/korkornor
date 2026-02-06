@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import MockModeBanner from "@/components/MockModeBanner";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "korkornor - จับตา กกต. 8 ก.พ. 2569",
@@ -23,6 +24,7 @@ export default function RootLayout({
       <body className="antialiased bg-gray-50 min-h-screen">
         {children}
         <MockModeBanner />
+        <Analytics />
       </body>
     </html>
   );
